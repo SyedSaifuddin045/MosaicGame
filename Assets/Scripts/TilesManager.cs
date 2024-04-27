@@ -1,20 +1,13 @@
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TilesManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject tilePrefab;
+    private GridInfoScriptableObject gridInfo;
     [SerializeField]
     private GameObject tileParent;
-    [SerializeField]
-    private int height, width;
-    [SerializeField]
-    private float spacing_x, spacing_y = 0.25f;
     private List<List<Tile>> gameTiles = new();
-    private float cameraDistance = 10.0f;
 #if UNITY_EDITOR
     private bool RegenerationRequired;
     private int currentHeight, currentWidth;
@@ -22,14 +15,14 @@ public class TilesManager : MonoBehaviour
 
     private void Start()
     {
-        currentHeight = height;
-        currentWidth = width;
+        currentHeight = gridInfo.height;
+        currentWidth = gridInfo.width;
         GenerateTiles();
     }
     private void Update()
     {
 #if UNITY_EDITOR
-        if (height != currentHeight || width != currentWidth)
+        if (gridInfo.height != currentHeight || gridInfo.width != currentWidth)
         {
             RegenerationRequired = true;
         }
@@ -61,20 +54,29 @@ public class TilesManager : MonoBehaviour
 
     private void GenerateTiles()
     {
-        if (tilePrefab == null)
+        if (gridInfo.tilePrefab == null)
             return;
 
-        for (int x = 0; x < width; x++)
+        for (int x = 0; x < gridInfo.width; x++)
         {
             List<Tile> tiles = new List<Tile>();
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < gridInfo.height; y++)
             {
-                GameObject instantiatedTileGameObject = Instantiate(tilePrefab, new Vector3(x + (x * spacing_x), y + (y * spacing_y)), Quaternion.identity, tileParent.transform);
+                GameObject instantiatedTileGameObject = Instantiate(gridInfo.tilePrefab, new Vector3(x + (x * gridInfo.spacing_x), y + (y * gridInfo.spacing_y)), Quaternion.identity, tileParent.transform);
                 instantiatedTileGameObject.name = $"TILE {x},{y}";
                 if (instantiatedTileGameObject.TryGetComponent<Tile>(out var tileClassOnInstantiatedGameObject))
                 {
                     GridData gridData = new GridData(x, y);
                     tileClassOnInstantiatedGameObject.Initialize(gridData);
+                    if (gridInfo.stencilDataForPositions.ContainsKey(gridData))
+                    {
+                        tileClassOnInstantiatedGameObject.hasStencil = true;
+                        Debug.Log("Stencil Activated for : " + gridData.pos_x + "," + gridData.pos_y);
+                        GridColorWithStencil gridColorWithStencil = gridInfo.stencilDataForPositions[gridData];
+                        tileClassOnInstantiatedGameObject.stencil = StencilGenerator.Instance.GenerateStencil(gridColorWithStencil.color, gridColorWithStencil.stencilScriptableObject.type, gridColorWithStencil.stencilScriptableObject.rotation);
+                        tileClassOnInstantiatedGameObject.SetStencilGameObjectSprite(gridColorWithStencil.stencilScriptableObject.sprite);
+                        tileClassOnInstantiatedGameObject.ActivateStencil(true);
+                    }
                     tiles.Add(tileClassOnInstantiatedGameObject);
                 }
                 else
@@ -90,16 +92,16 @@ public class TilesManager : MonoBehaviour
 
     private void SetVariablesForTileGenerationCompleted()
     {
-        currentHeight = height;
-        currentWidth = width;
+        currentHeight = gridInfo.height;
+        currentWidth = gridInfo.width;
         RegenerationRequired = false;
     }
 
     private void PositionCameraCentre(Camera camera)
     {
         // Calculate the total width and height of the grid including spacing
-        float totalWidth = width + (width - 1) * spacing_x;
-        float totalHeight = height + (height - 1) * spacing_y;
+        float totalWidth = gridInfo.width + (gridInfo.width - 1) * gridInfo.spacing_x;
+        float totalHeight = gridInfo.height + (gridInfo.height - 1) * gridInfo.spacing_y;
 
         // Calculate the half-width and half-height of the grid
         float halfWidth = totalWidth * 0.5f;
@@ -115,23 +117,21 @@ public class TilesManager : MonoBehaviour
         // Choose the maximum of the two distances calculated to ensure that all tiles are visible
         float cameraDistance = Mathf.Max(cameraDistanceX, cameraDistanceY);
 
-        int X = width / 2, Y = height / 2;
+        int X = gridInfo.width / 2, Y = gridInfo.height / 2;
         float Offset_X = 0, Offset_Y = 0;
-        if (width % 2 == 0)
+        if (gridInfo.width % 2 == 0)
         {
             X -= 1;
-            Offset_X = 0.5f + spacing_x / 2;
+            Offset_X = 0.5f + gridInfo.spacing_x / 2;
         }
 
-        if (height % 2 == 0)
+        if (gridInfo.height % 2 == 0)
         {
             Y -= 1;
-            Offset_Y = 0.5f + spacing_y / 2;
+            Offset_Y = 0.5f + gridInfo.spacing_y / 2;
         }
 
         Vector2 closestCentreTilePosition = gameTiles[X][Y].gameObject.transform.position;
         camera.transform.position = new Vector3(closestCentreTilePosition.x + Offset_X, closestCentreTilePosition.y + Offset_Y, -cameraDistance);
     }
-
-
 }

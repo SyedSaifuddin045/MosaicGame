@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e26acae31239c2c43ba3311fafc2a8e3, type: 3}
+  m_Name: GridInfoScriptableObject
+  m_EditorClassIdentifier: 
+  tilePrefab: {fileID: 3547757118004641841, guid: 839490a3fe3bf7d45a963dde7491b9ee, type: 3}
+  spacing_x: 0.1
+  spacing_y: 0.1
+  height: 7
+  width: 8
+  stencilDataForPositions:
+    info: 0
+    keys:
+      info: 0
+      values:
+        _: 0
+        values:
+        - pos_x: 2
+          pos_y: 6
+        - pos_x: 3
+          pos_y: 6
+        - pos_x: 4
+          pos_y: 6
+        - pos_x: 2
+          pos_y: 5
+        - pos_x: 2
+          pos_y: 6
+        - pos_x: 2
+          pos_y: 4
+      editor_input:
+        pos_x: 0
+        pos_y: 0
+    values:
+      _: 0
+      values:
+      - color: {r: 1, g: 0.5, b: 0, a: 1}
+        stencilScriptableObject: {fileID: 11400000, guid: eb98b1c1bca5638418d727a9fd84eec9, type: 2}
+      - color: {r: 1, g: 0.5, b: 0, a: 1}
+        stencilScriptableObject: {fileID: 11400000, guid: 916b37a4c1f6ddf4bbf33f8b5a7c013c, type: 2}
+      - color: {r: 1, g: 0.5, b: 0, a: 1}
+        stencilScriptableObject: {fileID: 11400000, guid: a2fe54bd84bfd0e4ca64dbf58a1a784c, type: 2}
+      - color: {r: 1, g: 0.5, b: 0, a: 1}
+        stencilScriptableObject: {fileID: 11400000, guid: 916b37a4c1f6ddf4bbf33f8b5a7c013c, type: 2}
+      - color: {r: 1, g: 0.5, b: 0, a: 1}
+        stencilScriptableObject: {fileID: 11400000, guid: 916b37a4c1f6ddf4bbf33f8b5a7c013c, type: 2}
+      - color: {r: 1, g: 0.5, b: 0, a: 1}
+        stencilScriptableObject: {fileID: 11400000, guid: 916b37a4c1f6ddf4bbf33f8b5a7c013c, type: 2}
+    editor_keyInput:
+      pos_x: 4
+      pos_y: 7
+    editor_valueInput:
+      color: {r: 1, g: 0.5, b: 0, a: 1}
+      stencilScriptableObject: {fileID: 11400000, guid: 916b37a4c1f6ddf4bbf33f8b5a7c013c, type: 2}
