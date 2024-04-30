@@ -36,6 +36,30 @@ MonoBehaviour:
           pos_y: 6
         - pos_x: 2
           pos_y: 4
+        - pos_x: 2
+          pos_y: 3
+        - pos_x: 3
+          pos_y: 4
+        - pos_x: 4
+          pos_y: 4
+        - pos_x: 3
+          pos_y: 5
+        - pos_x: 4
+          pos_y: 5
+        - pos_x: 3
+          pos_y: 3
+        - pos_x: 4
+          pos_y: 3
+        - pos_x: 3
+          pos_y: 0
+        - pos_x: 3
+          pos_y: 1
+        - pos_x: 2
+          pos_y: 2
+        - pos_x: 4
+          pos_y: 2
+        - pos_x: 3
+          pos_y: 2
       editor_input:
         pos_x: 0
         pos_y: 0
@@ -54,9 +78,33 @@ MonoBehaviour:
         stencilScriptableObject: {fileID: 11400000, guid: 916b37a4c1f6ddf4bbf33f8b5a7c013c, type: 2}
       - color: {r: 1, g: 0.5, b: 0, a: 1}
         stencilScriptableObject: {fileID: 11400000, guid: 916b37a4c1f6ddf4bbf33f8b5a7c013c, type: 2}
+      - color: {r: 1, g: 0.5, b: 0, a: 1}
+        stencilScriptableObject: {fileID: 11400000, guid: 916b37a4c1f6ddf4bbf33f8b5a7c013c, type: 2}
+      - color: {r: 1, g: 0.5, b: 0, a: 1}
+        stencilScriptableObject: {fileID: 11400000, guid: 916b37a4c1f6ddf4bbf33f8b5a7c013c, type: 2}
+      - color: {r: 1, g: 0.5, b: 0, a: 1}
+        stencilScriptableObject: {fileID: 11400000, guid: 916b37a4c1f6ddf4bbf33f8b5a7c013c, type: 2}
+      - color: {r: 1, g: 0.5, b: 0, a: 1}
+        stencilScriptableObject: {fileID: 11400000, guid: 916b37a4c1f6ddf4bbf33f8b5a7c013c, type: 2}
+      - color: {r: 1, g: 0.5, b: 0, a: 1}
+        stencilScriptableObject: {fileID: 11400000, guid: 916b37a4c1f6ddf4bbf33f8b5a7c013c, type: 2}
+      - color: {r: 1, g: 0.5, b: 0, a: 1}
+        stencilScriptableObject: {fileID: 11400000, guid: 916b37a4c1f6ddf4bbf33f8b5a7c013c, type: 2}
+      - color: {r: 1, g: 0.5, b: 0, a: 1}
+        stencilScriptableObject: {fileID: 11400000, guid: 916b37a4c1f6ddf4bbf33f8b5a7c013c, type: 2}
+      - color: {r: 0.31132078, g: 0.115880795, b: 0, a: 1}
+        stencilScriptableObject: {fileID: 11400000, guid: 916b37a4c1f6ddf4bbf33f8b5a7c013c, type: 2}
+      - color: {r: 0.31132078, g: 0.115880795, b: 0, a: 1}
+        stencilScriptableObject: {fileID: 11400000, guid: 916b37a4c1f6ddf4bbf33f8b5a7c013c, type: 2}
+      - color: {r: 1, g: 0, b: 0, a: 1}
+        stencilScriptableObject: {fileID: 11400000, guid: f47caafab9f379347a5ff992c46fa82c, type: 2}
+      - color: {r: 1, g: 0, b: 0, a: 1}
+        stencilScriptableObject: {fileID: 11400000, guid: 15caf95dbd62eb842af5f098e14b8e26, type: 2}
+      - color: {r: 1, g: 0, b: 0, a: 1}
+        stencilScriptableObject: {fileID: 11400000, guid: 916b37a4c1f6ddf4bbf33f8b5a7c013c, type: 2}
     editor_keyInput:
-      pos_x: 4
-      pos_y: 7
+      pos_x: 3
+      pos_y: 2
     editor_valueInput:
-      color: {r: 1, g: 0.5, b: 0, a: 1}
+      color: {r: 1, g: 0, b: 0, a: 1}
       stencilScriptableObject: {fileID: 11400000, guid: 916b37a4c1f6ddf4bbf33f8b5a7c013c, type: 2}

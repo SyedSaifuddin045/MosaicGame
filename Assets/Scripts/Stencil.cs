@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum Stencil_Type
@@ -16,6 +17,7 @@ public enum Stencil_Rotation
     OneEighty = 180,
     TwoSeventy = 270,
 }
+[Serializable]
 public class Stencil
 {
     public Color color;
@@ -85,13 +87,16 @@ public class AsymmetricStencil : Stencil
     }
     public override bool Equals(object obj)
     {
-        if (!base.Equals(obj))
+        if (obj == null)
         {
             return false;
         }
-        Stencil stencil = (Stencil)obj;
+        if (obj.GetType() != typeof(AsymmetricStencil))
+        {
+            return false;
+        }
         AsymmetricStencil other = (AsymmetricStencil)obj;
-        return stencil == this && rotation == other.rotation && InverseZRotation == other.InverseZRotation;
+        return base.Equals(obj) && rotation == other.rotation && InverseZRotation == other.InverseZRotation;
     }
 
     public override int GetHashCode()

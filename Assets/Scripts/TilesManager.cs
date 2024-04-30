@@ -71,7 +71,7 @@ public class TilesManager : MonoBehaviour
                     if (gridInfo.stencilDataForPositions.ContainsKey(gridData))
                     {
                         tileClassOnInstantiatedGameObject.hasStencil = true;
-                        Debug.Log("Stencil Activated for : " + gridData.pos_x + "," + gridData.pos_y);
+                        // Debug.Log("Stencil Activated for : " + gridData.pos_x + "," + gridData.pos_y);
                         GridColorWithStencil gridColorWithStencil = gridInfo.stencilDataForPositions[gridData];
                         tileClassOnInstantiatedGameObject.stencil = StencilGenerator.Instance.GenerateStencil(gridColorWithStencil.color, gridColorWithStencil.stencilScriptableObject.type, gridColorWithStencil.stencilScriptableObject.rotation);
                         tileClassOnInstantiatedGameObject.SetStencilGameObjectSprite(gridColorWithStencil.stencilScriptableObject.sprite);
@@ -95,6 +95,22 @@ public class TilesManager : MonoBehaviour
         currentHeight = gridInfo.height;
         currentWidth = gridInfo.width;
         RegenerationRequired = false;
+    }
+
+    public bool CheckAllTilesFilled()
+    {
+        // Debug.Log("CHecking for all tiles filled");
+        foreach (var tiles in gameTiles)
+        {
+            foreach (var tile in tiles)
+            {
+                if (tile.hasStencil && !tile.StencilFilled)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     private void PositionCameraCentre(Camera camera)

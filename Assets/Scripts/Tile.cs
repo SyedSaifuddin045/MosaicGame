@@ -1,3 +1,5 @@
+using System;
+using TreeEditor;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
@@ -5,12 +7,24 @@ public class Tile : MonoBehaviour
     public Color color { get; set; }
     public GridData gridData;
     public bool hasStencil;
-    public Stencil stencil;
+    private Stencil _stencil;
+
+    public Stencil stencil
+    {
+        get { return _stencil; }
+        set
+        {
+            _stencil = value;
+            hasStencil = true;
+        }
+    }
+
     public bool StencilFilled { get; private set; }
     public bool StencilVisible { get; private set; }
     private GameObject stencilGameobject;
     private GameObject stencilFillGameObject;
     private GameObject stencilMaskObject;
+    public static Action<GridData> tileFilled;
     public void Initialize(GridData gridData)
     {
         this.gridData = gridData;
@@ -20,6 +34,25 @@ public class Tile : MonoBehaviour
             stencilFillGameObject = stencilGameobject.transform.GetChild(0).gameObject;
             stencilMaskObject = stencilGameobject.transform.GetChild(1).gameObject;
         }
+    }
+    private void OnMouseDown()
+    {
+        // Debug.Log("GameObject name : " + gameObject.name + "hasStencil : " + hasStencil);
+        if (hasStencil)
+        {
+            if (!StencilFilled && stencil == GameManager.Instance.currentSelectedStencil)
+            {
+                // Debug.Log("Stencil not filled and current Selected Stencil == this.Stencil");
+                StencilFilled = true;
+                FillStencilGameObject();
+                tileFilled?.Invoke(gridData);
+            }
+        }
+    }
+    private void FillStencilGameObject()
+    {
+        // Debug.Log("Stencil filled GameObject Activated");
+        stencilFillGameObject.SetActive(true);
     }
     public void ActivateStencil(bool boolean)
     {
@@ -37,6 +70,7 @@ public class Tile : MonoBehaviour
             stencilGameobjectSpriteRenderer.sprite = sprite;
             stencilGameobjectSpriteRenderer.color = stencil.color;
             stencilFillGameObject.GetComponent<SpriteRenderer>().sprite = sprite;
+            stencilFillGameObject.GetComponent<SpriteRenderer>().color = stencil.color;
             stencilMaskObject.GetComponent<SpriteMask>().sprite = sprite;
 
             if (!stencil.symmetrical)

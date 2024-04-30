@@ -10,7 +10,6 @@ public class StencilGenerator : MonoBehaviour
         {
             case Stencil_Type.Square:
                 return GenerateSquareStencil(color);
-
             case Stencil_Type.Circle:
                 return GenerateCircleStencil(color);
             case Stencil_Type.Arc:
@@ -22,6 +21,11 @@ public class StencilGenerator : MonoBehaviour
             default:
                 return new Stencil(Color.clear, Stencil_Type.None, null);
         }
+    }
+
+    public Stencil GenerateStencil(Color color, StencilScriptableObject stencilScriptableObject)
+    {
+        return GenerateStencil(color, stencilScriptableObject.type, stencilScriptableObject.rotation);
     }
 
     private void Awake()
