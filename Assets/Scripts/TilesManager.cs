@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TilesManager : MonoBehaviour
@@ -149,5 +150,7 @@ public class TilesManager : MonoBehaviour
 
         Vector2 closestCentreTilePosition = gameTiles[X][Y].gameObject.transform.position;
         camera.transform.position = new Vector3(closestCentreTilePosition.x + Offset_X, closestCentreTilePosition.y + Offset_Y, -cameraDistance);
+        if (GameManager.Instance.winConfetti != null)
+            GameManager.Instance.winConfetti.gameObject.transform.position = new Vector3(closestCentreTilePosition.x + Offset_X, closestCentreTilePosition.y + Offset_Y, -cameraDistance);
     }
 }

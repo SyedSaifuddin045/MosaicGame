@@ -24,6 +24,7 @@ public class Tile : MonoBehaviour
     private GameObject stencilGameobject;
     private GameObject stencilFillGameObject;
     private GameObject stencilMaskObject;
+    public static Action<Vector2> wrongStencilClicked;
     public static Action<GridData> tileFilled;
     public void Initialize(GridData gridData)
     {
@@ -43,9 +44,15 @@ public class Tile : MonoBehaviour
             if (!StencilFilled && stencil == GameManager.Instance.currentSelectedStencil)
             {
                 // Debug.Log("Stencil not filled and current Selected Stencil == this.Stencil");
+                AudioManager.Instance.PlaySound(AudioManager.Instance.correctSound);
                 StencilFilled = true;
                 FillStencilGameObject();
                 tileFilled?.Invoke(gridData);
+            }
+            else
+            {
+                wrongStencilClicked?.Invoke(transform.position);
+                AudioManager.Instance.PlaySound(AudioManager.Instance.wrongSound);
             }
         }
     }
