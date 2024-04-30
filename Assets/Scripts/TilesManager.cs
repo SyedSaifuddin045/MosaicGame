@@ -16,8 +16,10 @@ public class TilesManager : MonoBehaviour
 
     private void Start()
     {
+#if UNITY_EDITOR
         currentHeight = gridInfo.height;
         currentWidth = gridInfo.width;
+#endif
         GenerateTiles();
     }
     private void Update()
@@ -93,9 +95,11 @@ public class TilesManager : MonoBehaviour
 
     private void SetVariablesForTileGenerationCompleted()
     {
+#if UNITY_EDITOR
         currentHeight = gridInfo.height;
         currentWidth = gridInfo.width;
         RegenerationRequired = false;
+#endif
     }
 
     public bool CheckAllTilesFilled()

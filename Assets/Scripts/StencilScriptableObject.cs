@@ -10,6 +10,7 @@ public class StencilScriptableObject : ScriptableObject
     public Stencil_Rotation rotation;
 }
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(StencilScriptableObject))]
 public class StencilScriptableObjectEditor : Editor
 {
@@ -37,3 +38,4 @@ public class StencilScriptableObjectEditor : Editor
         }
     }
 }
+#endif
